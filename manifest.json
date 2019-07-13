@@ -15,6 +15,7 @@
         "128": "images/logo.png"
       }
     },
+    "options_page": "../scripts/options.html",
     "icons": {
         "16": "images/logo.png",
         "48": "images/logo.png",
