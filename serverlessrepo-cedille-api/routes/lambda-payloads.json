@@ -1,0 +1,15 @@
+{
+    "ExampleRoot": {
+        "lambda": {},
+        "apigateway": {
+            "path": "/",
+            "method": {
+                "value": "GET",
+                "items": [
+                    "GET"
+                ]
+            },
+            "queryString": "text=Je%20suis%20un%20francais%20a%20Seattle."
+        }
+    }
+}
