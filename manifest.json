@@ -4,11 +4,16 @@
     "description": "Description goes here",
     "background": {
       "scripts": ["scripts/cedille.js"],
+<<<<<<< HEAD
       "persistent": true
+=======
+      "persistent": true //potentiallly false?
+>>>>>>> 76da10b54b836f38b556cc3a9b8ef1a4099ffa86
     },
     "page_action": {
       "default_popup": "popup.html",
       "default_icon": {
+<<<<<<< HEAD
         "16": "images/logo.png",
         "32": "images/logo.png",
         "48": "images/logo.png",
@@ -20,5 +25,13 @@
         "48": "images/logo.png",
         "128": "images/logo.png"
     },
+=======
+        "16": "images/cedilla.png",
+        "32": "images/cedilla.png",
+        "48": "images/cedilla.png",
+        "128": "images/cedilla.png"
+      }
+    },
+>>>>>>> 76da10b54b836f38b556cc3a9b8ef1a4099ffa86
     "manifest_version": 2
   }
