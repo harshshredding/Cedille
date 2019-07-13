@@ -4,7 +4,7 @@
     "description": "Description goes here",
     "background": {
       "scripts": ["scripts/cedille.js"],
-      "persistent": true //potentiallly false?
+      "persistent": true
     },
     "page_action": {
       "default_popup": "popup.html",
