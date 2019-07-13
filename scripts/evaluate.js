@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -51,6 +50,3 @@ async_fetch();
 
 // Set text back and edit the content.
 //foundElement.value = "cat";
-=======
-console.log("Evaluate called."); //Anything in this file gets called when the button is clicked.
->>>>>>> 85fd31cb6fcdf8ba9d007132bd36cebbfe248af2
