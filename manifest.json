@@ -15,7 +15,7 @@
       }
     },
     "permissions": [
-          "contextMenus","activeTab", "declarativeContent", "storage","*://*/*"
+          "contextMenus","activeTab", "declarativeContent", "storage","*://*/*","https://h0h46kcpo6.execute-api.us-east-2.amazonaws.com/*"
         ],
 
     "options_page": "../scripts/options.html",
