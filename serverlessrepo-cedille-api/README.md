@@ -18,6 +18,8 @@ Run the tests:
 
 `npm install`
 
+`npm install jest-cli --save`
+
 `npm test`
 
 ### Deploying

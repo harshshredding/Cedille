@@ -17,5 +17,8 @@
       "/node_modules/",
       "/routes/test\\.js"
     ]
+  },
+  "dependencies": {
+    "jest-cli": "^24.8.0"
   }
 }
