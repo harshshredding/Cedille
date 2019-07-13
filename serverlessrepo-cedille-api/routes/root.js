@@ -10,10 +10,13 @@ const config = require("../cors-config.json");
  */
 exports.handler = async (event, context) => {
     const origin = cors.getOriginFromEvent(event);
+    
+    console.log("\nInput text: " + event.queryStringParameters.text);
 
     // return an empty response, with CORS origin
     return {
         headers: cors.createOriginHeader(origin, config.allowedOrigins),
-        statusCode: 204
+        statusCode: 200,
+        body: event.queryStringParameters.text
     };
 };
