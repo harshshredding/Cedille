@@ -17,6 +17,6 @@ exports.handler = async (event, context) => {
     return {
         headers: cors.createOriginHeader(origin, config.allowedOrigins),
         statusCode: 200,
-        body: event.queryStringParameters.text
+        body: JSON.stringify({ text: event.queryStringParameters.text })
     };
 };
