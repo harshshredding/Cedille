@@ -4,10 +4,9 @@
     "description": "Description goes here",
     "background": {
       "scripts": ["scripts/cedille.js"],
-      "persistent": true
+      "persistent": false
     },
-    "page_action": {
-      "default_popup": "popup.html",
+    "browser_action": {
       "default_icon": {
         "16": "images/logo.png",
         "32": "images/logo.png",
@@ -15,7 +14,12 @@
         "128": "images/logo.png"
       }
     },
+    "permissions": [
+          "contextMenus","activeTab", "declarativeContent", "storage","*://*/*"
+        ],
+
     "options_page": "../scripts/options.html",
+
     "icons": {
         "16": "images/logo.png",
         "48": "images/logo.png",
