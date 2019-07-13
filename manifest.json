@@ -1,0 +1,19 @@
+{
+    "name": "Cedille",
+    "version": "1.0",
+    "description": "Description goes here",
+    "background": {
+      "scripts": ["scripts/cedille.js"],
+      "persistent": true //potentiallly false?
+    },
+    "page_action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "images/cedilla.png",
+        "32": "images/cedilla.png",
+        "48": "images/cedilla.png",
+        "128": "images/cedilla.png"
+      }
+    },
+    "manifest_version": 2
+  }
