@@ -28,7 +28,7 @@ Run the tests:
 sam package \
     --template-file template.yaml \
     --output-template-file packaged.yaml \
-    --s3-bucket $YOUR_BUCKET_NAME
+    --s3-bucket cloud9-046341101644-sam-deployments-us-east-2
 ```
 
 ```bash
