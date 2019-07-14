@@ -20,7 +20,7 @@ if(window.location.host == "mail.google.com"){
     contenttosend = foundElement[0].innerHTML;
 }
 else if(window.location.host == "www.facebook.com"){ //WIP
-    foundElement = document.getElementsByClassName("_1mf _1mj");
+    foundElement = document.getElementsByClassName("notranslate _5rpu");
     contenttosend = foundElement[0].innerHTML;
     contenttosend = contenttosend.replace();
 }
