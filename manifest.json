@@ -1,17 +1,17 @@
 {
     "name": "Cedille",
     "version": "1.0",
-    "description": "Description goes here",
+    "description": "Cedille makes it easy to type French text with proper accents using a QWERTY keyboard.",
     "background": {
       "scripts": ["scripts/cedille.js"],
       "persistent": true
     },
     "browser_action": {
       "default_icon": {
-        "16": "images/logo.png",
-        "32": "images/logo.png",
-        "48": "images/logo.png",
-        "128": "images/logo.png"
+        "16": "images/cedille-logo-svg.png",
+        "32": "images/cedille-logo-svg.png",
+        "48": "images/cedille-logo-svg.png",
+        "128": "images/cedille-logo-svg.png"
       }
     },
     "permissions": [
@@ -21,9 +21,9 @@
     "options_page": "../scripts/options.html",
 
     "icons": {
-        "16": "images/logo.png",
-        "48": "images/logo.png",
-        "128": "images/logo.png"
+        "16": "images/cedille-logo-svg.png",
+        "48": "images/cedille-logo-svg.png",
+        "128": "images/cedille-logo-svg.png"
     },
     "manifest_version": 2
   }
