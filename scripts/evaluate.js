@@ -12,11 +12,22 @@ function createCORSRequest(method, url) {
   return xhr;
 }
 
-foundElement = document.activeElement;
+// Find the actual element needed to modify.
+var contenttosend;
+if(window.location.host == "mail.google.com"){
+    console.log("We're on google!");
+    foundElement = document.getElementsByClassName("Am Al editable LW-avf");
+    contenttosend = foundElement[0].innerHTML;
+}
+else{
+    foundElement = document.activeElement;
+    contenttosend = foundElement.value;
+}
 
 // Make the actual CORS request.
+console.log("sending "+contenttosend);
 function makeCorsRequest() {
-  var url = 'https://h0h46kcpo6.execute-api.us-east-2.amazonaws.com/Prod?text='+foundElement.value;
+  var url = 'https://h0h46kcpo6.execute-api.us-east-2.amazonaws.com/Prod?text='+contenttosend;
   var xhr = createCORSRequest('GET', url);
   if (!xhr) {
     console.log("CORS not supported");
@@ -28,8 +39,14 @@ function makeCorsRequest() {
       if(content != null || content != ""){
           var content = JSON.parse(xhr.responseText).text;
           console.log("Received: "+content);
+
           // Set text back and edit the content.
-          foundElement.value = content;
+          if(window.location.host == "mail.google.com"){
+              foundElement[0].innerHTML = content;
+          }
+          else{
+              foundElement.value = content;
+          }
       }
   };
 
