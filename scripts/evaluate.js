@@ -1,52 +1,41 @@
-/*var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-       // Typical action to be performed when the document is ready:
-       console.log(xhttp.responseText);
-    }
-};
-xhttp.withCredentials = true;
-xhttp.open("GET", "https://h0h46kcpo6.execute-api.us-east-2.amazonaws.com/Prod?text=Je%20suis%20un%20francais%20a%20Seattle");
-xhttp.setRequestHeader("Content-Type", "application/json");
-xhttp.send();
-
-console.log("Returned: "+xhttp);
-
-// Get element that is currently focused.
-foundElement = document.activeElement;
-//console.log("Found "+foundElement.value);
-
-*/
-/*
-fetch('https://h0h46kcpo6.execute-api.us-east-2.amazonaws.com/Prod?text=Je%20suis%20un%20francais%20a%20Seattle')
-  .then(function(response) {
-    console.log(response);
-    return response;
-  })
-  .then(function(myJson) {
-    console.log(JSON.stringify(myJson));
-  });
- */
- var xhr = new XMLHttpRequest();
- xhr.open("GET", "https://h0h46kcpo6.execute-api.us-east-2.amazonaws.com/Prod?text=Je%20suis%20un%20francais%20a%20Seattle", true);
- xhr.onreadystatechange = function() {
-   if (xhr.readyState == 4) {
-     // innerText does not let the attacker inject HTML elements.
-     console.log("RETURNED:"+xhr.responseText);
-   }
- }
- xhr.send();
-
-// Call API to add special characters.
-/*
-async function async_fetch() {
-  let response = await fetch("https://h0h46kcpo6.execute-api.us-east-2.amazonaws.com/Prod?text=cat")
-  if (response.ok) return await response.json()
-  throw new Error(response.status)
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    xhr.open(method, url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+  } else if (typeof XDomainRequest != "undefined") {
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    xhr = null;
+  }
+  return xhr;
 }
 
-async_fetch();
-*/
+foundElement = document.activeElement;
 
-// Set text back and edit the content.
-//foundElement.value = "cat";
+// Make the actual CORS request.
+function makeCorsRequest() {
+  var url = 'https://h0h46kcpo6.execute-api.us-east-2.amazonaws.com/Prod?text='+foundElement.value;
+  var xhr = createCORSRequest('GET', url);
+  if (!xhr) {
+    console.log("CORS not supported");
+    return;
+  }
+
+  // Response handlers.
+  xhr.onload = function() {
+      if(content != null || content != ""){
+          var content = JSON.parse(xhr.responseText).text;
+          console.log("Received: "+content);
+          // Set text back and edit the content.
+          foundElement.value = content;
+      }
+  };
+
+  xhr.onerror = function() {
+    console.log("Request error");
+  };
+  xhr.send();
+}
+makeCorsRequest();
