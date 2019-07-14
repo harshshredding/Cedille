@@ -1,5 +1,6 @@
 const cors = require("../cors-util");
 const config = require("../cors-config.json");
+var AWS = require("aws-sdk");
 
 /**
  * Demonstrates a simple endpoint that accepts GET requests.
@@ -8,15 +9,28 @@ const config = require("../cors-config.json");
  * the GET method, so we do not have to handle OPTIONS requests.
  * Any desired additional CORS headers should be included in the GET response.
  */
-exports.handler = async (event, context) => {
+exports.handler = (event, context) => {
+
     const origin = cors.getOriginFromEvent(event);
     
-    console.log("\nInput text: " + event.queryStringParameters.text);
-
-    // return an empty response, with CORS origin
-    return {
-        headers: cors.createOriginHeader(origin, config.allowedOrigins),
-        statusCode: 200,
-        body: JSON.stringify({ text: event.queryStringParameters.text })
-    };
+    var request = new AWS.Comprehend().detectDominantLanguage({Text: 'Je suis allemand.'});
+    
+    // create the promise object
+    var promise = request.promise();
+    
+    // handle promise's fulfilled/rejected states
+    promise.then(
+      function(data) {
+        console.log(data);
+        return {
+            headers: cors.createOriginHeader(origin, config.allowedOrigins),
+            statusCode: 200,
+            body: JSON.stringify({ text: event.queryStringParameters.text })
+        };
+      },
+      function(error) {
+        /* handle the error */
+        console.log(error)
+      }
+    );
 };
