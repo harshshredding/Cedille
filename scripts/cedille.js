@@ -1,4 +1,5 @@
 console.log("cedille started");
+
 chrome.browserAction.onClicked.addListener(function (tab) {
         chrome.tabs.executeScript(tab.id, {
             "file": "scripts/evaluate.js"

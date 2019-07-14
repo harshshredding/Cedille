@@ -27,7 +27,7 @@ exports.getOriginFromEvent = event => event.headers.Origin || event.headers.orig
 exports.createOriginHeader = (origin, allowedOrigins) => {
     if (!origin)
         return {}; // no CORS headers necessary; browser will load resource
- 
+
     // look for origin in list of allowed origins
     const allowedPatterns = allowedOrigins.map(exports.compileURLWildcards);
     const isAllowed = allowedPatterns.some(pattern => origin.match(pattern));
@@ -54,15 +54,15 @@ exports.createPreflightResponse = (origin, allowedOrigins, allowedMethods, allow
         "Access-Control-Allow-Headers": allowedHeaders.join(","),
         "Access-Control-Allow-Methods": allowedMethods.join(",")
     });
-    if (maxAge !== undefined) 
+    if (maxAge !== undefined)
         headers["Access-Control-Max-Age"] = maxAge;
     return {headers, statusCode: 204};
 };
 
 /**
  * Compiles a URL containing wildcards into a regular expression.
- * 
- * Builds a regular expression that matches exactly the input URL, but allows 
+ *
+ * Builds a regular expression that matches exactly the input URL, but allows
  * any number of URL characters in place of each wildcard (*) character.
  * http://*.example.com matches http://abc.xyz.example.com but not http://example.com
  * http://*.example.com does not match http://example.org/.example.com
@@ -73,7 +73,7 @@ exports.compileURLWildcards = (url) => {
     // unreserved characters as per https://tools.ietf.org/html/rfc3986#section-2.3
     const urlUnreservedPattern = "[A-Za-z0-9\-._~]";
     const wildcardPattern = urlUnreservedPattern + "*";
-    
+
     const parts = url.split("*");
     const escapeRegex = str => str.replace(/([.?*+^$(){}|[\-\]\\])/g, "\\$1");
     const escaped = parts.map(escapeRegex);
