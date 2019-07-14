@@ -19,9 +19,22 @@ if(window.location.host == "mail.google.com"){
     foundElement = document.getElementsByClassName("Am Al editable LW-avf");
     contenttosend = foundElement[0].innerHTML;
 }
+else if(window.location.host == "www.facebook.com"){ //WIP
+    foundElement = document.getElementsByClassName("_1mf _1mj");
+    contenttosend = foundElement[0].innerHTML;
+    contenttosend = contenttosend.replace();
+}
 else{
     foundElement = document.activeElement;
     contenttosend = foundElement.value;
+}
+
+// Parse content divs out of text.
+try{
+    contenttosend = contenttosend.replace(/<\/?[^>]+(>|$)/g, "");
+}
+catch(err){
+    //Do nothing, as contenttosend is null.
 }
 
 // Make the actual CORS request.
@@ -40,8 +53,15 @@ function makeCorsRequest() {
           var content = JSON.parse(xhr.responseText).text;
           console.log("Received: "+content);
 
-          // Set text back and edit the content.
+// Content edits before insertion back into website.
+// Potential code goes here.
+//**************************
+
+// Set text back and edit the content.
           if(window.location.host == "mail.google.com"){
+              foundElement[0].innerHTML = content;
+          }
+          else if(window.location.host == "www.facebook.com"){
               foundElement[0].innerHTML = content;
           }
           else{
