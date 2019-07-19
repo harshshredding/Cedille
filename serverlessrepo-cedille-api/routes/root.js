@@ -47,7 +47,7 @@ exports.handler = async function (event, context) {
     var fr_text = data.TranslatedText;
     
   return {
-            headers: cors.createOriginHeader(origin, config.allowedOrigins),
+            headers: {"Access-Control-Allow-Origin": "*"},
             statusCode: 200,
             body: JSON.stringify({ text: fr_text })
         };
