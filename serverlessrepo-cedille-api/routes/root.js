@@ -13,11 +13,26 @@ exports.handler = async function (event, context) {
   const origin = cors.getOriginFromEvent(event);
   var input_text = event.queryStringParameters.text;     
 
+// Detect Dominant Language
+  var params0 = {
+    TextList: [input_text]
+  };
+	
+  var request0 = new AWS.Comprehend().batchDetectDominantLanguage(params0);
+    
+  // create the promise object
+  var promise0 = request0.promise();
+    
+  // handle promise's fulfilled/rejected states
+  var data0 =  await promise0;
+    console.log(data0);
+    var input_language = data0.ResultList[0].Languages[0].LanguageCode;	
+	
   var params1 = {
-    SourceLanguageCode: 'fr', /* required */
+    SourceLanguageCode: input_language, /* required */
     TargetLanguageCode: 'en', /* required */
     Text: input_text
-  };
+  };	
 	
   var request1 = new AWS.Translate().translateText(params1);
     
@@ -31,7 +46,7 @@ exports.handler = async function (event, context) {
 
   var params2 = {
     SourceLanguageCode: 'en', /* required */
-    TargetLanguageCode: 'fr', /* required */
+    TargetLanguageCode: input_language, /* required */
     Text: en_text
   };
 	
@@ -44,11 +59,11 @@ exports.handler = async function (event, context) {
   
   data =  await promise2;
     console.log(data);
-    var fr_text = data.TranslatedText;
+    var multi_text = data.TranslatedText;
     
   return {
             headers: {"Access-Control-Allow-Origin": "*"},
             statusCode: 200,
-            body: JSON.stringify({ text: fr_text })
+            body: JSON.stringify({ text: multi_text })
         };
 };
